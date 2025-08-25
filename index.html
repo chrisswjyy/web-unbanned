@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbanned whatsapp metode</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Token Authentication Screen -->
+    <div id="tokenScreen" class="screen active">
+        <div class="container">
+            <div class="auth-card">
+                <h1>WhatsApp Unban by chris</h1>
+                <p>Masukkan token untuk mengakses Website</p>
+                <form id="tokenForm">
+                    <div class="input-group">
+                        <input type="password" id="tokenInput" placeholder="Masukkan token..." required>
+                        <button type="submit">Masuk</button>
+                    </div>
+                </form>
+                <div id="tokenError" class="error-message" style="display: none;">
+                    Token salah! Gunakan token yang valid.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Screen -->
+    <div id="mainScreen" class="screen">
+        <div class="container">
+            <header>
+                <h1>WhatsApp Unban Mt Generator</h1>
+                <p>Buat Metode Unbanned By Chris</p>
+            </header>
+
+            <div class="form-card">
+                <form id="mainForm">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="userName">Nama Pengguna</label>
+                            <input type="text" id="userName" placeholder="Masukkan nama lengkap..." required>
+                        </div>
+                        <div class="input-group">
+                            <label for="userNumber">Nomor yang mau di unban</label>
+                            <input type="tel" id="userNumber" placeholder="Contoh: +62812345678..." required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="language">Bahasa</label>
+                        <select id="language" required>
+                            <option value="">Pilih bahasa...</option>
+                            <option value="brazil">Brazil (Português)</option>
+                            <option value="jepang">Jepang (日本語)</option>
+                            <option value="indonesia">Indonesia</option>
+                            <option value="kanada">Kanada (English/Français)</option>
+                            <option value="kamboja">Kamboja (ខ្មែរ)</option>
+                            <option value="chinese">Chinese (中文)</option>
+                            <option value="english">English</option>
+                            <option value="korea">Korea (한국어)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="createBtn" class="create-btn">
+                        <span id="btnText">Buat metode Metode</span>
+                        <span id="loadingSpinner" class="spinner" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Options Screen -->
+    <div id="reviewScreen" class="screen">
+        <div class="container">
+            <header>
+                <h1>Pilih Metode Tinjau</h1>
+                <p>Pilih cara untuk meninjau pesan unban yang telah dibuat</p>
+            </header>
+
+            <div class="review-options">
+                <button id="manualReviewBtn" class="review-btn manual">
+                    <div class="btn-icon">📋</div>
+                    <h3>Tinjau Manual</h3>
+                    <p>Preview dan copy pesan secara manual</p>
+                </button>
+
+                <button id="autoReviewBtn" class="review-btn auto">
+                    <div class="btn-icon">✉️</div>
+                    <h3>Tinjau Otomatis</h3>
+                    <p>Kirim langsung ke WhatsApp Support</p>
+                </button>
+            </div>
+
+            <button id="backToFormBtn" class="back-btn">← Kembali ke Form</button>
+        </div>
+    </div>
+
+    <!-- Manual Review Screen -->
+    <div id="manualScreen" class="screen">
+        <div class="container">
+            <header>
+                <h1>Preview Pesan Unban</h1>
+                <p>Tinjau pesan yang telah dibuat dan copy sesuai kebutuhan</p>
+            </header>
+
+            <div class="preview-card">
+                <div class="preview-section">
+                    <h3>Subject</h3>
+                    <div id="subjectPreview" class="preview-content"></div>
+                    <button id="copySubjectBtn" class="copy-btn">Copy Subject</button>
+                </div>
+
+                <div class="preview-section">
+                    <h3>Email Content</h3>
+                    <div id="mailPreview" class="preview-content mail-content"></div>
+                    <button id="copyMailBtn" class="copy-btn">Copy Mail</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="backToReviewBtn" class="back-btn">← Kembali</button>
+                <button id="generateNewBtn" class="generate-new-btn">Generate Baru</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto Review Screen -->
+    <div id="autoScreen" class="screen">
+        <div class="container">
+            <header>
+                <h1>Kirim Otomatis</h1>
+                <p>Pesan akan dikirim langsung ke WhatsApp Support</p>
+            </header>
+
+            <div class="auto-send-card">
+                <div class="send-info">
+                    <div class="info-item">
+                        <span class="label">Email Tujuan:</span>
+                        <span class="value">support@support.whatsapp.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Status:</span>
+                        <span id="sendStatus" class="value">Siap untuk dikirim</span>
+                    </div>
+                </div>
+
+                <div class="auto-preview">
+                    <h3>Subject yang akan dikirim:</h3>
+                    <div id="autoSubjectPreview" class="auto-content"></div>
+                    
+                    <h3>Isi email yang akan dikirim:</h3>
+                    <div id="autoMailPreview" class="auto-content"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="backToReviewFromAutoBtn" class="back-btn">← Kembali</button>
+                    <button id="sendEmailBtn" class="send-btn">Kirim Email</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="message success" style="display: none;">
+        <span id="successText"></span>
+    </div>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="message error" style="display: none;">
+        <span id="errorText"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
